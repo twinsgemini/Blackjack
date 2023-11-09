@@ -3,8 +3,9 @@ package study;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gamer {
+public class Gamer implements Player {
     private List<Card> cards;
+    private boolean turn;
 
     public Gamer() {
         cards = new ArrayList<>();
@@ -14,6 +15,7 @@ public class Gamer {
      * 카드 받기
      * @param card
      */
+    @Override
     public void receiveCard(Card card) {
         this.cards.add(card);
         this.showCards();
@@ -22,6 +24,7 @@ public class Gamer {
     /**
      * 현재 보유한 카드 확인
      */
+    @Override
     public void showCards() {
         StringBuilder sb = new StringBuilder();
         sb.append("현재 보유 카드 목록 \n");
@@ -34,7 +37,27 @@ public class Gamer {
         System.out.println(sb.toString());
     }
 
+    @Override
     public List<Card> openCards() {
         return this.cards;
+    }
+
+    @Override
+    public void turnOn() {
+        this.setTurn(true);
+    }
+
+    @Override
+    public void turnOff() {
+        this.setTurn(false);
+    }
+
+    @Override
+    public boolean isTurn() {
+        return this.turn;
+    }
+
+    private void setTurn(boolean turn) {
+        this.turn = turn;
     }
 }

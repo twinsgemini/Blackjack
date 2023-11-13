@@ -15,4 +15,6 @@ public interface Player {
     void turnOff();
 
     boolean isTurn();
+
+    String getName();
 }

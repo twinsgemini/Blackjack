@@ -7,6 +7,7 @@ public class Dealer implements Player {
     private List<Card> cards;
     private boolean turn;
     private static final int CAN_RECEIVE_POINT = 16;
+    private String NAME = "딜러";
 
     public Dealer() {
         cards = new ArrayList<>();
@@ -66,6 +67,11 @@ public class Dealer implements Player {
     @Override
     public boolean isTurn() {
         return this.turn;
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 
     private void setTurn(boolean turn) {

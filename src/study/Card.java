@@ -1,14 +1,12 @@
 package study;
 
 public class Card {
-    private String pattern;  // 무늬
-    private String denomination;  // 기호
-    private int point;  // 점수
+    private Pattern pattern;  // 무늬
+    private Denomination denomination;  // 기호
 
-    public Card(String patter, int index) {
+    public Card(Pattern patter, Denomination denomination) {
         this.pattern = patter;
-        this.denomination = this.numberToDenomination(index);
-        this.point = this.numberToPoint(index);
+        this.denomination = denomination;
     }
 
     private int numberToPoint(int number) {
@@ -34,31 +32,69 @@ public class Card {
         return String.valueOf(number);
     }
 
-    public String getPattern() {
+    public Pattern getPattern() {
         return pattern;
     }
-    public void setPattern(String pattern) {
+    public void setPattern(Pattern pattern) {
         this.pattern = pattern;
     }
 
-    public String getDenomination() {
+    public Denomination getDenomination() {
         return denomination;
     }
 
-    public void setDenomination(String denomination) {
+    public void setDenomination(Denomination denomination) {
         this.denomination = denomination;
-    }
-
-    public int getPoint() {
-        return point;
-    }
-
-    public void setPoint(int point) {
-        this.point = point;
     }
 
     @Override
     public String toString() {
         return "Card{" + "pattern='" + pattern + ", denomination='" + denomination + '}';
     }
+
+    public enum Pattern {
+        SPADE("spade"),
+        HEART("heart"),
+        DIAMOND("diamond"),
+        CLUB("club");
+
+        private String value;
+
+        Pattern() {}
+
+        Pattern(String value) {
+            this.value = value;
+        }
+    }
+
+    public enum Denomination {
+        ACE("A", 1),
+        TWO("2", 2),
+        THREE("3", 3),
+        FOUR("4", 4),
+        FIVE("5", 5),
+        SIX("6", 6),
+        SEVEN("7", 7),
+        EIGHT("8", 8),
+        NINE("9", 9),
+        TEN("10", 10),
+        JACK("J", 10),
+        QUEEN("Q", 10),
+        KING("K", 10);
+
+        private String mark;
+        private int point;
+
+        Denomination() {}
+
+        Denomination(String mark, int point) {
+            this.mark = mark;
+            this.point = point;
+        }
+
+        public int getPoint() {
+            return this.point;
+        }
+    }
+
 }

@@ -1,15 +1,18 @@
 package study;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class CardDeck {
-    private List<Card> cards;
+    private Stack<Card> cards;
     private static final String[] PATTERNS = {"spade", "heart", "diamond", "club"};
     private static final int CARD_COUNT = 13;
 
     public CardDeck() {
         cards = this.generateCards();  // 생성자에서 비지니스 로직은 필요없다 -> generateCards()
+        Collections.shuffle(this.cards);
     }
 
     public Card getCard() {
@@ -28,13 +31,13 @@ public class CardDeck {
         return sb.toString();
     }
 
-    private List<Card> generateCards() {
-        List<Card> cards = new LinkedList<>();
+    private Stack<Card> generateCards() {
+        Stack<Card> cards = new Stack<>();
 
         for (Card.Pattern pattern : Card.Pattern.values()) {
             for (Card.Denomination denomination : Card.Denomination.values()) {
                 Card card = new Card(pattern, denomination);
-                cards.add(card);
+                cards.push(card);
             }
         }
 
@@ -42,9 +45,7 @@ public class CardDeck {
     }
 
     public Card draw() {
-        Card selectedCard = getRandomCard();
-        cards.remove(selectedCard);
-        return selectedCard;
+        return this.cards.pop();
     }
 
     private Card getRandomCard() {
@@ -52,4 +53,9 @@ public class CardDeck {
         int select = (int) (Math.random()*size);
         return cards.get(select);
     }
+
+    public Stack<Card> getCards() {
+        return this.cards;
+    }
+
 }

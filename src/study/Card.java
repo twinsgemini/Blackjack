@@ -49,7 +49,7 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" + "pattern='" + pattern + ", denomination='" + denomination + '}';
+        return "Card{" + "pattern='" + pattern + "', denomination='" + denomination.getPoint() + "'}";
     }
 
     public enum Pattern {
